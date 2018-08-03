@@ -1,10 +1,8 @@
-#connecting db and flask.
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class flight(db.Model):
+class Flight(db.Model):
     __tablename__ = 'flights'
     id = db.Column(db.Integer, primary_key=True)
     origin = db.Column(db.String, nullable=False)
@@ -12,7 +10,7 @@ class flight(db.Model):
     duration = db.Column(db.Integer, nullable=False)
 
 
-class passenger(db.Model):
+class Passenger(db.Model):
     __tablename__ = 'passengers'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
