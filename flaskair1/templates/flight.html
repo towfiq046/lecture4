@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %}		<!-- NO SPACE BETWEEN % AND { -->
 
-{% block title %}
+{% block title %}		<!-- EVEN IN COMMENTS CAN NOT USE { AND % TOGATHER, IT READS EVERYTHING. -->
 		Flight
 {% endblock %}
 
@@ -24,11 +24,11 @@
 
 	</table>
 
-	<h2>Passengers.</h2>\
+	<h2>Passengers.</h2>
 
 	<table class="table table-stripes">
 		<tbody>
-		{% for passenger in passengers % }	<!-- form flight func -->
+		{% for passenger in passengers %}	<!-- form flight func -->
 			<tr>
 				<td>{{ passenger.name }}</td>
 			</tr>
