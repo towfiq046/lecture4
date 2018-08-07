@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+  <h1>Book a Flight.</h1>
+
+  <form action="{{ url_for('book') }}" method="post">   <!-- all syntax. -->
+
+    <div class="form-group">
+        <!-- drop-down menu with bootstrap styling in class. -->
+        <select class="form-control" name="flightID">   <!-- app.py line 21. -->
+            {% for flight in flights %}
+
+                <!-- flight is the row and . is used to access a column of that row. -->
+                <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="form-control" name="name" placeholder="Passenger name.">   <!-- in app.py name was needed in line 19. -->
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Book Flight</button>
+    </div>
+
+  </form>
+
+{% endblock %}
