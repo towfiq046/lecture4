@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from models import *
 
 app = Flask(__name__)
@@ -59,3 +59,24 @@ def flight(flightID):
     # getting the passenger info of what is fetched from the db.
     passengers = flight.passengersRelation    # in flight table calling the passenger property.
     return render_template("flight.html", flight=flight, passengers=passengers)
+
+# api of our own.
+@app.route("/api/flights/<int:flightID>")
+def flightAPI(flightID):
+    # it
+    flight = flightdb.query.get(flightID)
+    if flight is None:
+        # take a py dictionary and make it a json obj.
+        return jsonify({"error": "Invalid flightID"}), 422
+                 # it
+    passengers = flight.passengersRelation  # info of all the passengers in this flight.
+    names = []   # all the strings(people) in fligt.
+    for passenger in passengers:
+        names.append(passenger.name)
+        # json obj.
+    return jsonify({
+            "origin": flight.origin,
+            "destination": flight.destination,
+            "duration": flight.duration,
+            "passengers": names
+        })
